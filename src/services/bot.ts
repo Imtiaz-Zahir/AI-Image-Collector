@@ -29,7 +29,7 @@ async function getChannel(botToken: string) {
 
     await client.login(botToken);
 
-    const channel = await client.channels.fetch("1276611343662710937");
+    const channel = await client.channels.fetch("1281679888826372149");
 
     if (!channel) throw new Error("Channel not found.");
 
