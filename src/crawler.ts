@@ -1,6 +1,7 @@
 import storeImages from "./storeImage";
 import getNewImages from "./utils/getNewImages";
 import { filterGeneratedImages, separateImages } from "./utils/imageFiler";
+import "dotenv/config";
 
 export default async function crawler(
   channelId: string,
@@ -28,7 +29,6 @@ export default async function crawler(
     const images = separateImages(generatedImages);
 
     imageStored = await storeImages(images, botToken);
-
   } catch (error) {
     console.error(error);
   }
@@ -51,3 +51,16 @@ function delay(ms: number) {
     setTimeout(resolve, ms);
   });
 }
+
+const channelID = process.env.CHANNEL_ID;
+const authToken = process.env.AUTH_TOKEN;
+const lastMessageId = process.env.LAST_MESSAGE_ID;
+const channelName = process.env.CHANNEL_NAME;
+const botToken = process.env.BOT_TOKEN;
+
+if (!channelID || !authToken || !lastMessageId || !channelName || !botToken) {
+  console.error("Missing environment variables");
+  process.exit(1);
+}
+
+crawler(channelID, authToken, lastMessageId, channelName, botToken);
