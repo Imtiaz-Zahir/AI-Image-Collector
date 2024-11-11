@@ -19,6 +19,8 @@ export default async function crawler(
 
     totalNewImage = newImages.length;
 
+    console.log(`get ${totalNewImage} images from ${channelName} -> ${channelId}`);
+
     if (totalNewImage > 0) lastImageId = newImages[0].id;
 
     const generatedImages = filterGeneratedImages(newImages);

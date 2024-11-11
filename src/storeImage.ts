@@ -1,6 +1,7 @@
 import type { SingleImageData } from "./types";
 import storeImage from "./services/bot";
 import { updateChannelLastMessageId } from "./services/channle";
+import { sendToQueue } from "./services/rabbiteMQ";
 
 export default async function storeImages(
   images: SingleImageData[],
@@ -16,18 +17,22 @@ export default async function storeImages(
     messageID,
     channelID,
   } of images) {
-    const attachmentData = await storeImage({
-      url,
-      prompt,
-      createdAt,
-      isSingle,
-      botToken,
-    });
+    const attachmentData = await sendToQueue(
+      JSON.stringify({
+        prompt,
+        url,
+        createdAt,
+        isSingle,
+        messageID,
+        channelID,
+      })
+    );
 
     if (!attachmentData) continue;
 
-    if (attachmentData.length > 0) storedImages++;
-    await updateChannelLastMessageId(channelID, messageID);
+    storedImages++;
+
+    // await updateChannelLastMessageId(channelID, messageID);
   }
 
   return storedImages;

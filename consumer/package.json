@@ -1,16 +1,14 @@
 {
-  "name": "midjourney-image-collector",
+  "name": "consumer",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "generate": "prisma generate",
-    "start": "node build/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "devDependencies": {
     "@types/amqplib": "^0.10.5",
     "@types/node": "^20.14.14",
@@ -24,9 +22,6 @@
     "axios": "^1.7.2",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "form-data": "^4.0.0",
-    "log4js": "^6.9.1",
-    "mongoose": "^8.3.2",
     "sharp": "^0.33.5"
   }
 }
