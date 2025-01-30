@@ -2,8 +2,7 @@ import axios from "axios";
 import FormData from "form-data";
 
 // Your Discord webhook URL
-const webhookUrl =
-  "https://discord.com/api/webhooks/1248145076002099220/UTjlZnI5krEY931SILfDEvlavs6IQnfoPjaaGB0FPfVei2muitGz4Ri1B8MEaB6rlmem?wait=true";
+const webhookUrl ="";
 
 export default async function storeAttachment(url: string, prompt: string, build_At: Date) {
   const prevAttachmentData = urlParser(url);
